@@ -10,7 +10,7 @@
 
             {{-- Stories --}}
             <section>
-                <ul class="flex overflow-x-auto items-center gap-2">
+                <ul class="flex overflow-x-auto scrollbar-hide items-center gap-2">
                     @for ($i = 0; $i < 15; $i++)
                         <li class="flex flex-col justify-center w-20 gap-1 p-2">
                             <x-avatar story src="https://source.unsplash.com/500x500?face-{{ $i }}" class="w-14 h-14" />
