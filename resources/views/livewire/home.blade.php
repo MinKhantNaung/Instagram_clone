@@ -60,7 +60,24 @@
                     <li class="text-xs text-gray-800/90 font-medium">
                         <a href="#" class="hover:underline">Help</a>
                     </li>
+                    <li class="text-xs text-gray-800/90 font-medium">
+                        <a href="#" class="hover:underline">API</a>
+                    </li>
+                    <li class="text-xs text-gray-800/90 font-medium">
+                        <a href="#" class="hover:underline">Jobs</a>
+                    </li>
+                    <li class="text-xs text-gray-800/90 font-medium">
+                        <a href="#" class="hover:underline">Privacy</a>
+                    </li>
+                    <li class="text-xs text-gray-800/90 font-medium">
+                        <a href="#" class="hover:underline">Terms</a>
+                    </li>
+                    <li class="text-xs text-gray-800/90 font-medium">
+                        <a href="#" class="hover:underline">Locations</a>
+                    </li>
                 </ol>
+
+                <h3 class="text-gray-800/90 mt-6 text-sm">@ 2023 INSTAGRAM COURSE</h3>
             </section>
 
         </aside>
