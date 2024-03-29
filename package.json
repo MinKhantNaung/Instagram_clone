@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@alpinejs/intersect": "^3.13.7",
+        "swiper": "^11.1.0",
         "tailwind-scrollbar-hide": "^1.1.7"
     }
 }
