@@ -118,7 +118,7 @@
             </a></li>
 
         <li>
-            <div class="flex items-center gap-5">
+            <div onclick="Livewire.dispatch('openModal', { component: 'post.create' })" class="flex items-center gap-5">
 
                 <span class="border border-gray-600  rounded-lg p-px">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9"
