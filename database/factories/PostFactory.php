@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Media;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -32,9 +33,9 @@ class PostFactory extends Factory
     {
         return $this->afterCreating(function (Post $post) {
             if ($post->type == 'reel') {
-                // Media::factory()->reel()->create(['mediable_type' => get_class($post), 'mediable_id' => $post->id]);
+                Media::factory()->reel()->create(['mediable_type' => get_class($post), 'mediable_id' => $post->id]);
             } else {
-                // Media::factory()->post()->create(['mediable_type' => get_class($post), 'mediable_id' => $post->id]);
+                Media::factory()->post()->create(['mediable_type' => get_class($post), 'mediable_id' => $post->id]);
             }
         });
     }
