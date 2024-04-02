@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,21 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'parent_id' => null,
+            'commentable_id' => Post::factory(),
+            'commentable_type' => Post::class,
+            'body' => $this->faker->paragraph(),
         ];
+    }
+
+    public function isReply(Post $post)
+    {
+        return $this->state(function(array $attributes) use ($post) {
+            return [
+                'commentable_id' => $post->id,
+                'commentable_type' => Post::class,
+            ];
+        });
     }
 }

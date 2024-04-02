@@ -31,7 +31,7 @@ class Comment extends Model
         return $this->hasMany(Comment::class, 'parent_id', 'id')->with('replies');
     }
 
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
