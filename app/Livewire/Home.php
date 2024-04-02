@@ -26,7 +26,9 @@ class Home extends Component
 
     public function mount()
     {
-        $this->posts = Post::orderBy('id', 'desc')->get();
+        $this->posts = Post::with('comments')
+            ->orderBy('id', 'desc')
+            ->get();
     }
 
     public function render()

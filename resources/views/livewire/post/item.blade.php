@@ -139,7 +139,7 @@
         </div>
 
         {{-- view post modal --}}
-        <button onclick="Livewire.dispatch('openModal', { component: 'post.view.modal', arguments: {'post': {{ $post->id }}} })" class="text-slate-500/90 text-sm font-medium">View all 456 comments</button>
+        <button onclick="Livewire.dispatch('openModal', { component: 'post.view.modal', arguments: {'post': {{ $post->id }}} })" class="text-slate-500/90 text-sm font-medium">View all {{ $post->comments->count() }} comments</button>
 
         {{-- leave comment --}}
         <form x-data="{ inputText: '' }" class="grid grid-cols-12 items-center w-full">
