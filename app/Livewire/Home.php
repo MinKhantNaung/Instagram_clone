@@ -10,6 +10,10 @@ class Home extends Component
 {
     public $posts;
 
+    public $canLoadMore;
+    public $perPageIncrements = 5;
+    public $perPage = 10;
+
     #[On('closeModal')]
     public function removeUrl()
     {
@@ -24,11 +28,34 @@ class Home extends Component
         $this->posts = $this->posts->prepend($post);
     }
 
+    public function loadMore()
+    {
+        if (!$this->canLoadMore) {
+            return null;
+        }
+        // dd('here');  // testing for loadMore work or not
+
+        // increment page
+        $this->perPage += $this->perPageIncrements;
+
+        // load posts
+        $this->loadPosts();
+    }
+
+    // function to load posts
+    public function loadPosts()
+    {
+        $this->posts = Post::with('comments.replies')
+            ->orderBy('id', 'desc')
+            ->take($this->perPage)
+            ->get();
+
+        $this->canLoadMore = ($this->posts->count() >= $this->perPage);
+    }
+
     public function mount()
     {
-        $this->posts = Post::with('comments')
-            ->orderBy('id', 'desc')
-            ->get();
+        $this->loadPosts();
     }
 
     public function render()
