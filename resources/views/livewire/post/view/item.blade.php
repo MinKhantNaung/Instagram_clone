@@ -50,102 +50,101 @@
 
         </header>
 
-        <main>
+        <main class="space-y-3">
 
-            {{-- comment item --}}
-            <section class="flex flex-col gap-2">
+            @if ($comments)
 
-                {{-- main comment --}}
-                <div class="flex items-start gap-3 py-2">
-                    <x-avatar story src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}"
-                        class="w-9 h-9 mb-auto" />
+                @foreach ($comments as $comment)
+                    {{-- comment item --}}
+                    <section class="flex flex-col gap-2">
 
-                    <div class="grid grid-cols-7 w-full gap-2">
+                        {{-- main comment --}}
+                        <div class="flex items-start gap-3 py-2">
+                            <x-avatar story src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}"
+                                class="w-9 h-9 mb-auto" />
 
-                        {{-- comment --}}
+                            <div class="grid grid-cols-7 w-full gap-2">
 
-                        <div class="col-span-6 flex flex-wrap text-sm">
-                            <p>
-                                <span class="font-bold text-sm"> {{ $post->user->name }}</span>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos earum mollitia
-                                reprehenderit suscipit natus rem, quas Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Inventore eos consectetur aliquam incidunt provident illo
-                                voluptates quibusdam dignissimos ut. Facere soluta culpa illum repellendus
-                                temporibus nisi quos recusandae, pariatur nihil. Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Doloribus quisquam rem nostrum obcaecati fugit
-                                recusandae incidunt iure cum, ea optio possimus explicabo suscipit, laborum
-                                necessitatibus perferendis error totam. Repudiandae, nihil.
-                            </p>
+                                {{-- comment --}}
+
+                                <div class="col-span-6 flex flex-wrap text-sm">
+                                    <p>
+                                        <span class="font-bold text-sm"> {{ $comment->user->name }}</span>
+                                        {{ $comment->body }}
+                                    </p>
+                                </div>
+
+                                {{-- like --}}
+                                <div class="col-span-1 flex text-right justify-end mb-auto">
+                                    <button class="font-bold text-sm ml-auto">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                        </svg>
+
+                                    </button>
+                                </div>
+
+                                {{-- footer --}}
+                                <div class="col-span-7 flex gap-2 text-xs text-gray-700">
+                                    <span> {{ $comment->created_at->diffForHumans() }}</span>
+                                    <span class="font-bold"> 345 Likes</span>
+                                    <span class="font-semibold"> Reply</span>
+                                </div>
+
+                            </div>
                         </div>
 
-                        {{-- like --}}
-                        <div class="col-span-1 flex text-right justify-end mb-auto">
-                            <button class="font-bold text-sm ml-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                </svg>
+                        @if ($comment->replies)
+                            @foreach ($comment->replies as $reply)
+                                {{-- reply --}}
+                                <div class="flex items-start gap-3 w-11/12 ml-auto py-2">
+                                    <x-avatar story src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}"
+                                        class="w-8 h-8 mb-auto" />
 
-                            </button>
-                        </div>
+                                    <div class="grid grid-cols-7 w-full gap-2">
 
-                        {{-- footer --}}
-                        <div class="col-span-7 flex gap-2 text-xs text-gray-700">
-                            <span> 2d</span>
-                            <span class="font-bold"> 345 Likes</span>
-                            <span class="font-semibold"> Reply</span>
-                        </div>
+                                        {{-- comment --}}
 
-                    </div>
-                </div>
+                                        <div class="col-span-6 flex flex-wrap text-sm">
+                                            <p>
+                                                <span class="font-bold text-sm"> {{ $reply->user->name }}</span>
+                                                <span class="font-bold"> @ {{ $reply->parent->user->name }}</span>
+                                                {{ $reply->body }}
+                                            </p>
+                                        </div>
 
-                {{-- reply --}}
-                <div class="flex items-start gap-3 w-11/12 ml-auto py-2">
-                    <x-avatar story src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}"
-                        class="w-8 h-8 mb-auto" />
+                                        {{-- like --}}
+                                        <div class="col-span-1 flex text-right justify-end mb-auto">
+                                            <button class="font-bold text-sm ml-auto">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="w-3 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                                </svg>
 
-                    <div class="grid grid-cols-7 w-full gap-2">
+                                            </button>
+                                        </div>
 
-                        {{-- comment --}}
+                                        {{-- footer --}}
+                                        <div class="col-span-7 flex gap-2 text-xs text-gray-700">
+                                            <span> {{ $reply->created_at->diffForHumans() }}</span>
+                                            <span class="font-bold"> 345 Likes</span>
+                                            <span class="font-semibold"> Reply</span>
+                                        </div>
 
-                        <div class="col-span-6 flex flex-wrap text-sm">
-                            <p>
-                                <span class="font-bold text-sm"> {{ $post->user->name }}</span>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos earum mollitia
-                                reprehenderit suscipit natus rem, quas Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Inventore eos consectetur aliquam incidunt provident illo
-                                voluptates quibusdam dignissimos ut. Facere soluta culpa illum repellendus
-                                temporibus nisi quos recusandae, pariatur nihil. Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Doloribus quisquam rem nostrum obcaecati fugit
-                                recusandae incidunt iure cum, ea optio possimus explicabo suscipit, laborum
-                                necessitatibus perferendis error totam. Repudiandae, nihil.
-                            </p>
-                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
 
-                        {{-- like --}}
-                        <div class="col-span-1 flex text-right justify-end mb-auto">
-                            <button class="font-bold text-sm ml-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                </svg>
-
-                            </button>
-                        </div>
-
-                        {{-- footer --}}
-                        <div class="col-span-7 flex gap-2 text-xs text-gray-700">
-                            <span> 2d</span>
-                            <span class="font-bold"> 345 Likes</span>
-                            <span class="font-semibold"> Reply</span>
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>
+                    </section>
+                @endforeach
+            @else
+                No comments
+            @endif
 
         </main>
 
@@ -202,9 +201,7 @@
             </div>
 
             {{-- view post modal --}}
-            <button
-                onclick="Livewire.dispatch('openModal',{ component: 'post.view.modal', arguments: { 'post':{{ $post->id }} } })"
-                class="text-slate-500/90 text-sm font-medium"> View all 456 comments </button>
+            <p class="text-slate-500/90 text-sm font-medium"> {{ $post->comments->count() }} comments </p>
 
             {{-- leave comment --}}
             <form x-data="{ inputText: '' }" class="grid grid-cols-12 items-center w-full">
