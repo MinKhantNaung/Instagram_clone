@@ -35,7 +35,7 @@ class Modal extends ModalComponent
     public function render()
     {
         return <<<'BLADE'
-        <main class="bg-white h-[calc(100vh-3.5rem)] md:h-[calc(100vh-5rem)] flex flex-col border gap-y-4 px-5">
+        <main class="bg-white h-[calc(100vh-3.5rem)] md:h-[calc(100vh-5rem)] flex flex-col border gap-y-4 px-5 p-2">
 
             <livewire:post.view.item :post="$this->post" />
 
