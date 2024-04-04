@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
+        "overtrue/laravel-like": "^5.3",
         "wire-elements/modal": "2.0.9"
     },
     "require-dev": {
