@@ -52,7 +52,7 @@
 
         <main class="space-y-3">
 
-            @if ($comments)
+            @if ($comments->count())
 
                 @foreach ($comments as $comment)
                     {{-- comment item --}}
