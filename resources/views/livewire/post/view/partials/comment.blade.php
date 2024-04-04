@@ -1,5 +1,5 @@
 <div class="flex items-start gap-3 py-2">
-    <x-avatar src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}" class="w-9 h-9 mb-auto" />
+    <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}" class="w-9 h-9 mb-auto" />
 
     <div class="grid grid-cols-7 w-full gap-2">
 

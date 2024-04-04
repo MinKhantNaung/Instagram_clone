@@ -13,6 +13,13 @@ class Item extends Component
     public $body;
     public $parent_id = null;
 
+    public function togglePostLike()
+    {
+        abort_unless(auth()->check(), 401);
+
+        auth()->user()->toggleLike($this->post);
+    }
+
     public function addComment()
     {
         $this->validate([
