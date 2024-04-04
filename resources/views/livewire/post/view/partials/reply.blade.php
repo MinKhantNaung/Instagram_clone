@@ -8,7 +8,6 @@
         <div class="col-span-6 flex flex-wrap text-sm">
             <p>
                 <span class="font-bold text-sm"> {{ $reply->user->name }}</span>
-                {{-- <span class="font-bold"> @ {{ $reply->parent->user->name }}</span> --}}
                 {{ $reply->body }}
             </p>
         </div>
