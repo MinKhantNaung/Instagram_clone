@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6c41bb51e99266461a03983311ba4ce",
+    "content-hash": "e03026a5c4c4a8604dc41ef89c9af4fa",
     "packages": [
         {
             "name": "brick/math",
@@ -2468,6 +2468,76 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "overtrue/laravel-favorite",
+            "version": "5.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-favorite.git",
+                "reference": "a1cfcc9c0d101a80ea55f422cffb856c929504ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-favorite/zipball/a1cfcc9c0d101a80ea55f422cffb856c929504ed",
+                "reference": "a1cfcc9c0d101a80ea55f422cffb856c929504ed",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.0|^10.0|^11.0",
+                "php": "^8.0.2"
+            },
+            "require-dev": {
+                "brainmaestro/composer-git-hooks": "dev-master",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "laravel/pint": "^1.2",
+                "mockery/mockery": "^1.4.4",
+                "orchestra/testbench": "^8.0|^9.0",
+                "phpunit/phpunit": "^10.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Overtrue\\LaravelFavorite\\FavoriteServiceProvider"
+                    ]
+                },
+                "hooks": {
+                    "pre-commit": [
+                        "composer fix-style"
+                    ],
+                    "pre-push": [
+                        "composer test"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelFavorite\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "User favorite features for Laravel Application.",
+            "support": {
+                "issues": "https://github.com/overtrue/laravel-favorite/issues",
+                "source": "https://github.com/overtrue/laravel-favorite/tree/5.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/overtrue",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-18T11:26:52+00:00"
         },
         {
             "name": "overtrue/laravel-like",
