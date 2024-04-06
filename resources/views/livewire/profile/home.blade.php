@@ -1,3 +1,3 @@
-<div>
+<x-profile-layout :user="$user">
     Home
-</div>
+</x-profile-layout>
