@@ -12,7 +12,7 @@
         <!--User Name -->
         <div class="mt-4">
             <x-input-label for="user-name" :value="__('User Name')" />
-            <x-text-input id="user-name" class="block mt-1 w-full" type="text" name="user_name" :value="old('user_name')" required autocomplete="user_name" />
+            <x-text-input id="user-name" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
         </div>
 

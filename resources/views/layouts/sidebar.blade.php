@@ -132,7 +132,7 @@
         </li>
 
         <li>
-            <a href="{{ route('profile.home', auth()->user()->user_name) }}" class="flex items-center gap-5">
+            <a href="{{ route('profile.home', auth()->user()->username) }}" class="flex items-center gap-5">
 
                 <x-avatar src="https://source.unsplash.com/500x500?face" class="w-7 h-7 shrink-0" />
 
