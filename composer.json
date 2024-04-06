@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
         "overtrue/laravel-favorite": "^5.2",
+        "overtrue/laravel-follow": "^5.2",
         "overtrue/laravel-like": "^5.3",
         "wire-elements/modal": "2.0.9"
     },
