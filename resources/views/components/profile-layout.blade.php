@@ -135,7 +135,7 @@
         <ul class="grid grid-cols-3 gap-4 max-w-sm mx-auto pb-3 ">
             {{-- Posts --}}
             <li class="{{ request()->routeIs('profile.home') ? 'border-t border-black' : '' }}">
-                <a wire:navigate href="{{ route('profile.home', $user->username) }}"
+                <a wire:navigate.hover href="{{ route('profile.home', $user->username) }}"
                     class="flex items-center gap-2 py-2 cursor-pointer">
                     {{-- border icon from bootsrap icons --}}
                     <span>
@@ -152,7 +152,7 @@
 
             {{-- Reels --}}
             <li class="{{ request()->routeIs('profile.reels') ? 'border-t border-black' : '' }}">
-                <a wire:navigate href="{{ route('profile.reels', $user->username) }}"
+                <a wire:navigate.hover href="{{ route('profile.reels', $user->username) }}"
                     class="flex items-center gap-2 py-2 cursor-pointer">
                     {{-- border icon from bootsrap icons --}}
                     <span>
@@ -178,7 +178,7 @@
                 @if (auth()->user()->id === $user->id)
                     {{-- Saved --}}
                     <li class="{{ request()->routeIs('profile.saved') ? 'border-t border-black' : '' }}">
-                        <a wire:navigate href="{{ route('profile.saved', $user->username) }}"
+                        <a wire:navigate.hover href="{{ route('profile.saved', $user->username) }}"
                             class="flex items-center gap-2 py-2 cursor-pointer">
                             {{-- Tag icon from bootsrap icons --}}
                             <span>
