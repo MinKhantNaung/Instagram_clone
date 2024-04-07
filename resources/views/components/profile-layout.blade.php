@@ -134,53 +134,67 @@
     <section class="border-t">
         <ul class="grid grid-cols-3 gap-4 max-w-sm mx-auto pb-3 ">
             {{-- Posts --}}
-            <li class="flex items-center gap-2 py-2 cursor-pointer border-t border-black">
-                {{-- border icon from bootsrap icons --}}
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-border-all lg:w-5 lg:h-5" viewBox="0 0 16 16">
-                        <path
-                            d="M0 0h16v16H0V0zm1 1v6.5h6.5V1H1zm7.5 0v6.5H15V1H8.5zM15 8.5H8.5V15H15V8.5zM7.5 15V8.5H1V15h6.5z" />
-                    </svg>
-                </span>
+            <li class="{{ request()->routeIs('profile.home') ? 'border-t border-black' : '' }}">
+                <a wire:navigate href="{{ route('profile.home', $user->username) }}"
+                    class="flex items-center gap-2 py-2 cursor-pointer">
+                    {{-- border icon from bootsrap icons --}}
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-border-all lg:w-5 lg:h-5" viewBox="0 0 16 16">
+                            <path
+                                d="M0 0h16v16H0V0zm1 1v6.5h6.5V1H1zm7.5 0v6.5H15V1H8.5zM15 8.5H8.5V15H15V8.5zM7.5 15V8.5H1V15h6.5z" />
+                        </svg>
+                    </span>
 
-                <h4 class="font-bold capitalize">Posts</h4>
+                    <h4 class="font-bold capitalize">Posts</h4>
+                </a>
             </li>
 
-            {{-- Posts --}}
-            <li class="flex items-center gap-2 py-2 cursor-pointer ">
-                {{-- border icon from bootsrap icons --}}
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" id="instagram-reel">
-                        <path fill="currentColor" fill-rule="evenodd"
-                            d="M1 6.5A5.5 5.5 0 0 1 6.5 1h11A5.5 5.5 0 0 1 23 6.5v11a5.5 5.5 0 0 1-5.5 5.5h-11A5.5 5.5 0 0 1 1 17.5v-11ZM6.5 3A3.5 3.5 0 0 0 3 6.5v11A3.5 3.5 0 0 0 6.5 21h11a3.5 3.5 0 0 0 3.5-3.5v-11A3.5 3.5 0 0 0 17.5 3h-11Z"
-                            clip-rule="evenodd"></path>
-                        <path fill="currentColor" fill-rule="evenodd"
-                            d="M9.038 10.113a1 1 0 0 1 1.035.068l5 3.5a1 1 0 0 1 0 1.638l-5 3.5A1 1 0 0 1 8.5 18v-7a1 1 0 0 1 .538-.887zm1.462 2.808v3.158l2.256-1.579-2.256-1.58zM1 8a1 1 0 0 1 1-1h20a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1z"
-                            clip-rule="evenodd"></path>
-                        <path fill="#000" fill-rule="evenodd"
-                            d="M7.684 1.051a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265zm6 0a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265z"
-                            clip-rule="evenodd"></path>
-                    </svg>
+            {{-- Reels --}}
+            <li class="{{ request()->routeIs('profile.reels') ? 'border-t border-black' : '' }}">
+                <a wire:navigate href="{{ route('profile.reels', $user->username) }}"
+                    class="flex items-center gap-2 py-2 cursor-pointer">
+                    {{-- border icon from bootsrap icons --}}
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" id="instagram-reel">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M1 6.5A5.5 5.5 0 0 1 6.5 1h11A5.5 5.5 0 0 1 23 6.5v11a5.5 5.5 0 0 1-5.5 5.5h-11A5.5 5.5 0 0 1 1 17.5v-11ZM6.5 3A3.5 3.5 0 0 0 3 6.5v11A3.5 3.5 0 0 0 6.5 21h11a3.5 3.5 0 0 0 3.5-3.5v-11A3.5 3.5 0 0 0 17.5 3h-11Z"
+                                clip-rule="evenodd"></path>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M9.038 10.113a1 1 0 0 1 1.035.068l5 3.5a1 1 0 0 1 0 1.638l-5 3.5A1 1 0 0 1 8.5 18v-7a1 1 0 0 1 .538-.887zm1.462 2.808v3.158l2.256-1.579-2.256-1.58zM1 8a1 1 0 0 1 1-1h20a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path fill="#000" fill-rule="evenodd"
+                                d="M7.684 1.051a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265zm6 0a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265z"
+                                clip-rule="evenodd"></path>
+                        </svg>
 
-                </span>
+                    </span>
 
-                <h4 class="font-bold capitalize">Reels</h4>
+                    <h4 class="font-bold capitalize">Reels</h4>
+                </a>
             </li>
 
-            {{-- Saved --}}
-            <li class="flex items-center gap-2 py-2 cursor-pointer ">
-                {{-- Tag icon from bootsrap icons --}}
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-bookmark lg:w-5 lg:h-5" viewBox="0 0 16 16">
-                        <path
-                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                    </svg>
-                </span>
+            @auth
+                @if (auth()->user()->id === $user->id)
+                    {{-- Saved --}}
+                    <li class="{{ request()->routeIs('profile.saved') ? 'border-t border-black' : '' }}">
+                        <a wire:navigate href="{{ route('profile.saved', $user->username) }}"
+                            class="flex items-center gap-2 py-2 cursor-pointer">
+                            {{-- Tag icon from bootsrap icons --}}
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-bookmark lg:w-5 lg:h-5" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                </svg>
+                            </span>
 
-                <h4 class="font-bold capitalize">Saved</h4>
-            </li>
+                            <h4 class="font-bold capitalize">Saved</h4>
+                        </a>
+                    </li>
+                @endif
+            @endauth
+
         </ul>
 
     </section>
