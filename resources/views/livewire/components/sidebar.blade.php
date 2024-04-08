@@ -143,7 +143,8 @@
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Messages</h4>
             </a></li>
 
-        <li><a class="flex items-center gap-5">
+        <li>
+            <div @click="showSearch = false; showNotifications = true; drawer = true" class="flex items-center gap-5">
 
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9"
@@ -154,7 +155,8 @@
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Notifications</h4>
-            </a></li>
+                </@click=>
+        </li>
 
         <li>
             <div onclick="Livewire.dispatch('openModal', { component: 'post.create' })"
@@ -237,7 +239,8 @@
     </footer>
 
     {{-- TODO: When you create sidebar as livewire component  use @teleport blade directive --}}
-    <div @click.outside="drawer = false; showSearch = false; showNotifications = false;" x-show="drawer" x-cloak x-transition.origin.left
+    <div @click.outside="drawer = false; showSearch = false; showNotifications = false;" x-show="drawer" x-cloak
+        x-transition.origin.left
         class="fixed inset-y-0 left-[70px] w-96 px-4 overflow-y-scroll overflow-x-hidden shadow bg-white border rounded-r-2xl z-[50]">
 
         {{-- Search --}}
@@ -283,6 +286,11 @@
 
             </div>
         </template>
+
+        {{-- Notifications --}}
+        <div x-cloak x-show="showNotifications">
+            <livewire:components.notifications />
+        </div>
 
     </div>
 
