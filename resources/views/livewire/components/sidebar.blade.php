@@ -1,7 +1,9 @@
 <div x-data="{
-    shrink: false,
-    drawer: false
-}" class="menu p-3 w-20 overflow-x-hidden h-full grid bg-white border-r text-base-content"
+    shrink: @entangle('shrink'),
+    drawer: @entangle('drawer'),
+    showSearch: false,
+    showNotifications: false
+}" class="menu relative p-3 w-20 h-full grid bg-white border-r text-base-content"
     :class="{ 'w-72': !shrink }">
 
     {{-- Logo --}}
@@ -47,7 +49,8 @@
             </a>
         </li>
 
-        <li><a class="flex items-center gap-5">
+        <li>
+            <div @click="showSearch = true; showNotifications = false; drawer = true" class="flex items-center gap-5">
 
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -58,7 +61,8 @@
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Search</h4>
-            </a></li>
+            </div>
+        </li>
 
 
         <li>
@@ -233,7 +237,52 @@
     </footer>
 
     {{-- TODO: When you create sidebar as livewire component  use @teleport blade directive --}}
-    <div x-show="drawer" class="fixed inset-y-0 left-[70px] w-96 bg-red-500 border rounded-r-2xl z-[5]">
+    <div @click.outside="drawer = false; showSearch = false; showNotifications = false;" x-show="drawer" x-cloak x-transition.origin.left
+        class="fixed inset-y-0 left-[70px] w-96 px-4 overflow-y-scroll overflow-x-hidden shadow bg-white border rounded-r-2xl z-[50]">
+
+        {{-- Search --}}
+        <template x-if="showSearch">
+            <div x-cloak class="h-full">
+
+                <header class="sticky top-0 w-full bg-white py-2">
+
+                    <h5 class="text-4xl font-bold my-4">Search</h5>
+
+                    <input wire:model.live='query' type="search" placeholder="Search "
+                        class="border-0 outline-none w-full focus:outline-none bg-gray-100 rounded-lg hover:ring-0 focus:ring-0 ">
+
+                </header>
+
+                {{-- search results --}}
+                <main class="my-2">
+
+                    @if (isset($results) && !empty($results))
+                        <ul class="space-y-2 overflow-x-hidden">
+                            @foreach ($results as $key => $user)
+                                <li>
+                                    <a wire:navigate href="{{ route('profile.home', $user->username) }}"
+                                        class="flex gap-2 truncate items-center">
+                                        <x-avatar wire:ignore class="w-9 h-9 mb-auto"
+                                            src="https://source.unsplash.com/500x500?face-{{ $key }}" />
+
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-sm">{{ $user->username }}</span>
+                                            <span class="font-normal text-xs truncate">{{ fake()->sentence() }}</span>
+
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <center>
+                            No results
+                        </center>
+                    @endif
+                </main>
+
+            </div>
+        </template>
 
     </div>
 

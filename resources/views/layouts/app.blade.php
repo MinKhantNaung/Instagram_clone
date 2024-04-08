@@ -28,7 +28,7 @@
               {{-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> --}}
                 {{ $slot }}
             </div>
-            <div class="drawer-side">
+            <div class="drawer-side z-10" style="overflow: visible;">
               <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
 
                 {{-- @include('layouts.sidebar') --}}
