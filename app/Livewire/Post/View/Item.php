@@ -4,6 +4,7 @@ namespace App\Livewire\Post\View;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\NewCommentNotification;
 use App\Notifications\PostLikedNotification;
 use Livewire\Component;
 
@@ -45,7 +46,7 @@ class Item extends Component
             'body' => 'required'
         ]);
 
-        Comment::create([
+        $comment = Comment::create([
             'body' => $this->body,
             'user_id' => auth()->id(),
             'parent_id' => $this->parent_id,
@@ -54,6 +55,9 @@ class Item extends Component
         ]);
 
         $this->reset('body', 'parent_id');
+
+        // notify user
+        $this->post->user->notify(new NewCommentNotification(auth()->user(), $comment));
     }
 
     function setParent(Comment $comment)

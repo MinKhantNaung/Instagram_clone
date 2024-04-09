@@ -4,6 +4,7 @@ namespace App\Livewire\Post;
 
 use App\Models\Post;
 use App\Models\Comment;
+use App\Notifications\NewCommentNotification;
 use App\Notifications\PostLikedNotification;
 use Livewire\Component;
 
@@ -19,6 +20,7 @@ class Item extends Component
 
         auth()->user()->toggleLike($this->post);
 
+        // notify post's user if like
         if ($this->post->isLikedBy(auth()->user())) {
             $this->post->user->notify(new PostLikedNotification(auth()->user(), $this->post));
         }
@@ -44,7 +46,7 @@ class Item extends Component
             'body' => 'required'
         ]);
 
-        Comment::create([
+        $comment = Comment::create([
             'body' => $this->body,
             'user_id' => auth()->id(),
             'commentable_id' => $this->post->id,
@@ -52,6 +54,9 @@ class Item extends Component
         ]);
 
         $this->reset('body');
+
+        // notify user
+        $this->post->user->notify(new NewCommentNotification(auth()->user(), $comment));
     }
 
     public function render()
