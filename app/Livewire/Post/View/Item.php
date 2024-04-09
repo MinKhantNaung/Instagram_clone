@@ -4,6 +4,7 @@ namespace App\Livewire\Post\View;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\PostLikedNotification;
 use Livewire\Component;
 
 class Item extends Component
@@ -18,6 +19,10 @@ class Item extends Component
         abort_unless(auth()->check(), 401);
 
         auth()->user()->toggleLike($this->post);
+
+        if ($this->post->isLikedBy(auth()->user())) {
+            $this->post->user->notify(new PostLikedNotification(auth()->user(), $this->post));
+        }
     }
 
     public function toggleCommentLike(Comment $comment)
