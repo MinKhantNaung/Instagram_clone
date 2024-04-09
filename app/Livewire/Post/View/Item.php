@@ -22,7 +22,10 @@ class Item extends Component
         auth()->user()->toggleLike($this->post);
 
         if ($this->post->isLikedBy(auth()->user())) {
-            $this->post->user->notify(new PostLikedNotification(auth()->user(), $this->post));
+            if ($this->post->user_id != auth()->id()) {
+
+                $this->post->user->notify(new PostLikedNotification(auth()->user(), $this->post));
+            }
         }
     }
 
@@ -57,7 +60,10 @@ class Item extends Component
         $this->reset('body', 'parent_id');
 
         // notify user
-        $this->post->user->notify(new NewCommentNotification(auth()->user(), $comment));
+        if ($this->post->user_id != auth()->id()) {
+
+            $this->post->user->notify(new NewCommentNotification(auth()->user(), $comment));
+        }
     }
 
     function setParent(Comment $comment)

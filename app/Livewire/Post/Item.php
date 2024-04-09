@@ -22,7 +22,10 @@ class Item extends Component
 
         // notify post's user if like
         if ($this->post->isLikedBy(auth()->user())) {
-            $this->post->user->notify(new PostLikedNotification(auth()->user(), $this->post));
+            if ($this->post->user_id != auth()->id()) {
+
+                $this->post->user->notify(new PostLikedNotification(auth()->user(), $this->post));
+            }
         }
     }
 
@@ -56,7 +59,10 @@ class Item extends Component
         $this->reset('body');
 
         // notify user
-        $this->post->user->notify(new NewCommentNotification(auth()->user(), $comment));
+        if ($this->post->user_id != auth()->id()) {
+
+            $this->post->user->notify(new NewCommentNotification(auth()->user(), $comment));
+        }
     }
 
     public function render()
