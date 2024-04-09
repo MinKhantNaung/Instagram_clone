@@ -21,9 +21,9 @@
                 </div>
 
                 <div class="col-span-3">
-                    {{-- <button class="font-bold text-sm bg-blue-500 text-white px-3 py-1.5 rounded-lg">Follow</button> --}}
-                    <button
-                        class="font-bold text-sm bg-gray-100 text-black/90 px-3 py-1.5 rounded-lg">Following</button>
+                    <button class="font-bold text-sm bg-blue-500 text-white px-3 py-1.5 rounded-lg">Follow</button>
+                    {{-- <button
+                        class="font-bold text-sm bg-gray-100 text-black/90 px-3 py-1.5 rounded-lg">Following</button> --}}
                 </div>
 
             </div>
