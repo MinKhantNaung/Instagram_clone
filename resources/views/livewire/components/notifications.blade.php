@@ -46,23 +46,28 @@
 
                     @case('App\Notifications\PostLikedNotification')
                         {{-- PostLiked --}}
+
+                        @php
+                            $post = App\Models\Post::find($notification->data['post_id']);
+                        @endphp
+
                         <div class="grid grid-cols-12 gap-2 w-full">
-                            <a href="#" class="col-span-2">
+                            <a href="{{ route('profile.home', $user->username) }}" class="col-span-2">
                                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ rand(0, 10) }}"
                                     class="w-10 h-10" />
                             </a>
 
                             <div class="col-span-7 font-medium">
-                                <a href="#"> <strong>{{ fake()->name }}</strong> </a>
+                                <a href="{{ route('profile.home', $user->username) }}"> <strong>{{ $user->username }}</strong> </a>
 
-                                <a href="#">
+                                <a href="{{ route('post', $post->id) }}">
                                     Liked your post
-                                    <span class="text-gray-400">2d</span>
+                                    <span class="text-gray-400">{{ $notification->created_at->shortAbsoluteDiffForHumans() }}</span>
                                 </a>
 
                             </div>
 
-                            <a href="#" class="col-span-3 ml-auto">
+                            <a href="{{ route('post', $post->id) }}" class="col-span-3 ml-auto">
                                 <img src="https://source.unsplash.com/500x500?nature-{{ rand(0, 10) }}" alt="image"
                                     class="w-10 h-11 object-cover">
                             </a>
