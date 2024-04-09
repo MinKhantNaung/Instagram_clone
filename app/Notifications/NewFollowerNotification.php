@@ -2,21 +2,25 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewFollowerNotification extends Notification
+class NewFollowerNotification extends Notification implements ShouldBroadcastNow
 {
     use Queueable;
+
+    public User $user;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -26,7 +30,7 @@ class NewFollowerNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -48,7 +52,7 @@ class NewFollowerNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'user_id' => $this->user->id
         ];
     }
 }
