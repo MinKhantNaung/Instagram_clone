@@ -155,7 +155,7 @@
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Notifications</h4>
-                </@click=>
+            </div>
         </li>
 
         <li>
