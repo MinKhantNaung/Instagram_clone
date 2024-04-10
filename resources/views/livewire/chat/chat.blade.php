@@ -9,7 +9,7 @@
 
             <div class="flex w-full items-center px-2 lg:px-4 gap-2 md:gap-5">
                 {{-- Return --}}
-                <a href="#" class="shrink-0 lg:hidden dark:text-white" id="chatReturn">
+                <a wire:navigate href="{{ route('chat') }}" class="shrink-0 lg:hidden dark:text-white" id="chatReturn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -18,10 +18,16 @@
 
                 {{-- Avatar --}}
                 <div class="shrink-0">
-                    <x-avatar class="h-8 w-8 lg:w-10 lg:h-10 " />
+                    <a wire:navigate href="{{ route('profile.home', $receiver->username) }}">
+                        <x-avatar class="h-8 w-8 lg:w-10 lg:h-10 " />
+                    </a>
                 </div>
 
-                <h6 class="font-bold truncate"> {{ fake()->name() }} </h6>
+                <h6 class="font-bold truncate">
+                    <a wire:navigate href="{{ route('profile.home', $receiver->username) }}">
+                        {{ $receiver->username }}
+                    </a>
+                </h6>
 
                 {{-- Actions --}}
                 <div class="flex gap-4 items-center ml-auto">

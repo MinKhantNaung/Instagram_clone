@@ -52,7 +52,7 @@
 
                     {{-- Chat list item --}}
                     <li
-                        class="py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2">
+                        class="{{ request()?->chat == $conversation?->id ? 'bg-gray-100' : '' }} py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2">
 
                         <a href="{{ route('profile.home', $receiver->username) }}" class="shrink-0">
                             <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ rand(0, 10) }}"
