@@ -93,7 +93,7 @@
                             @endif
 
                             {{-- Send message button --}}
-                            <button type="button"
+                            <button wire:click="message({{ $user->id }})" type="button"
                                 class="inline-flex justify-center font-bold items-center rounded-lg text-sm p-1.5 px-2 transition bg-gray-200 hover:bg-slate-100 ">
                                 Massage
                             </button>

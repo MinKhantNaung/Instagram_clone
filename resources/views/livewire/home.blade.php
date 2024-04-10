@@ -93,14 +93,14 @@
 
                     @foreach ($suggestedUsers as $index => $user)
                         <li class="flex items-center gap-3">
-                            <a href="{{ route('profile.home', $user->username) }}">
+                            <a wire:navigate href="{{ route('profile.home', $user->username) }}">
                                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $index }}"
                                     class="w-12 h-12" />
                             </a>
 
                             <div class="grid grid-cols-7 w-full gap-2">
                                 <div class="col-span-5">
-                                    <a href="{{ route('profile.home', $user->username) }}" class="font-semibold truncate text-sm">{{ $user->username }}</a>
+                                    <a wire:navigate href="{{ route('profile.home', $user->username) }}" class="font-semibold truncate text-sm">{{ $user->username }}</a>
                                     <p wire:ignore class="text-xs truncate">Followed by {{ fake()->name }}</p>
                                 </div>
                                 <div class="col-span-2 flex text-right justify-end">

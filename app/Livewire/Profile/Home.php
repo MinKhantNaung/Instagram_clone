@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Models\Conversation;
 use App\Models\User;
 use App\Notifications\NewFollowerNotification;
 use Livewire\Component;
@@ -33,6 +34,36 @@ class Home extends Component
         if (auth()->user()->isFollowing($this->user)) {
             $this->user->notify(new NewFollowerNotification(auth()->user()));
         }
+    }
+
+    public function message($userId)
+    {
+        $authenticatedUserId = auth()->id();
+
+        // check if conversation exists
+        $existingConversation = Conversation::where(function ($query) use ($authenticatedUserId, $userId) {
+            $query->where('sender_id', $authenticatedUserId)
+                ->where('receiver_id', $userId);
+        })
+        ->orWhere(function ($query) use ($authenticatedUserId, $userId) {
+            $query->where('sender_id', $userId)
+                ->where('receiver_id', $authenticatedUserId);
+        })
+        ->first();
+
+        if ($existingConversation) {
+
+            // redirect to conversation
+            return redirect()->route('chat.main', $existingConversation->id);
+        }
+
+        // create new conversation
+        $newConversation = Conversation::create([
+            'sender_id' => $authenticatedUserId,
+            'receiver_id' => $userId
+        ]);
+
+        return redirect()->route('chat.main', $newConversation->id);
     }
 
     public function render()
