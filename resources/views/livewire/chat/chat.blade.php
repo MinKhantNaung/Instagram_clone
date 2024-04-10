@@ -153,13 +153,13 @@
                     </svg>
                 </span>
 
-                <form method="POST" autocapitalize="off" class="col-span-11 md:col-span-9 ">
+                <form wire:submit="sendMessage()" method="POST" autocapitalize="off" class="col-span-11 md:col-span-9 ">
 
                     @csrf
                     <input type="hidden" autocomplete="false" style="display: none">
                     <div class="grid grid-cols-12">
-                        <input autocomplete="off" wire:model.defer='body' id="sendMessage" autofocus type="text"
-                            name="message" placeholder="Message" maxlength="1700"
+                        <input autocomplete="off" wire:model='body' id="sendMessage" autofocus type="text"
+                            placeholder="Message" maxlength="1700"
                             class="col-span-10  border-0  outline-0 focus:border-0 focus:ring-0  hover:ring-0 rounded-lg   dark:text-gray-300     focus:outline-none   " />
 
                         <button type="submit" class="col-span-2 text-blue-500 font-bold">Send</button>

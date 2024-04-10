@@ -3,15 +3,15 @@ import './bootstrap';
 import { livewire_hot_reload } from 'virtual:livewire-hot-reload'
 livewire_hot_reload();
 
-import Alpine from 'alpinejs';
+// import Alpine from 'alpinejs';
 
 import intersect from '@alpinejs/intersect'
 
 Alpine.plugin(intersect)
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();
 
 // core version + navigation, pagination modules:
 import Swiper from 'swiper';
