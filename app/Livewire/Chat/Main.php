@@ -19,7 +19,7 @@ class Main extends Component
 
                     <main class="grid w-full h-full relative overflow-y-auto" style="contain: content">
 
-                        messages
+                        <livewire:chat.chat />
 
                     </main>
 
