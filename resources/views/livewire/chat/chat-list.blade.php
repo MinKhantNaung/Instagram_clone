@@ -45,9 +45,9 @@
             <ul class="p-2 grid w-full spacey-y-2">
 
                 @foreach ($conversations as $conversation)
-
                     @php
                         $receiver = $conversation->getReceiver();
+                        $lastMessage = $conversation->messages()->latest()->first();
                     @endphp
 
                     {{-- Chat list item --}}
@@ -72,27 +72,32 @@
                                 </div>
 
                                 {{-- Message body --}}
-                                <div class="flex gap-x-2 items-center">
+                                @if ($lastMessage != null)
+                                    <div class="flex gap-x-2 items-center">
 
-                                    {{-- Only show if AUTH is onwer of message --}}
-                                    <span class="font-bold text-xs">
-                                        You:
-                                    </span>
+                                        {{-- Only show if AUTH is onwer of message --}}
+                                        @if ($lastMessage->sender_id == auth()->id())
+                                            <span class="font-bold text-xs">
+                                                You:
+                                            </span>
+                                        @endif
 
-                                    <p class="  truncate text-xs font-[100]">
-                                        Lorem Lorem Lorem Lorem
-                                    </p>
+                                        <p class="  truncate text-xs font-[100]">
+                                            {{ $lastMessage?->body }}
+                                        </p>
 
-                                    <span class="font-medium px-1 text-xs shrink-0  text-gray-800   ">5m</span>
+                                        <span class="font-medium px-1 text-xs shrink-0  text-gray-800">
+                                            {{ $lastMessage->created_at->shortAbsoluteDiffForHumans() }}
+                                        </span>
 
-
-                                </div>
+                                    </div>
+                                @endif
 
                             </a>
 
                             {{-- Read status --}}
                             {{-- Only show if AUTH is NOT onwer of message --}}
-                            <div class="col-span-2 flex flex-col text-center my-auto">
+                            <div class="{{ $lastMessage != null && $lastMessage->sender_id != auth()->id() && !$lastMessage->isRead() ? 'visible' : 'invisible' }} col-span-2 flex flex-col text-center my-auto">
 
                                 {{-- Dots icon --}}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
