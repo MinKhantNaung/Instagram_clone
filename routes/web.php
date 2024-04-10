@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Chat\Index;
 use App\Livewire\Explore;
 use App\Livewire\Home;
 use App\Livewire\Post\View\Page;
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/explore', Explore::class)->name('explore');
     Route::get('/reels', Reel::class)->name('reels');
     Route::get('/posts/{post}', Page::class)->name('post');
+    Route::get('/chat', Index::class)->name('chat');
 
     Route::get('/profile/{user}', ProfileHome::class)->name('profile.home');
     Route::get('/profile/{user}/reels', Reels::class)->name('profile.reels');
