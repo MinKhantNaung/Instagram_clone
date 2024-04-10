@@ -3,7 +3,7 @@
     drawer: @entangle('drawer'),
     showSearch: false,
     showNotifications: false
-}" x-init="$wire.shrink = {{ request()->routeIs('chat') }}"
+}" x-init="$wire.shrink = {{ request()->routeIs('chat') || request()->routeIs('chat.main') }}"
     class="menu p-3 w-20 h-full grid bg-white border-r text-base-content" :class="{ 'w-72': !shrink }">
 
     {{-- Logo --}}
@@ -29,7 +29,7 @@
 
                 <span>
                     @if (request()->routeIs('home'))
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
                             <path
                                 d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
                             <path
@@ -37,7 +37,7 @@
                         </svg>
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
+                            stroke="currentColor" class="w-7 h-7">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
@@ -131,7 +131,7 @@
 
                 <span>
 
-                    @if (request()->routeIs('chat'))
+                    @if (request()->routeIs('chat') || request()->routeIs('chat.main'))
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             fill="currentColor" viewBox="0 0 16 16">
                             <path
