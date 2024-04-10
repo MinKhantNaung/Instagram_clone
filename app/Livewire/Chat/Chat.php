@@ -13,6 +13,9 @@ class Chat extends Component
 
     public $body;
 
+    public $loadedMessages;
+    public $paginate_var = 10;
+
     public function sendMessage()
     {
         $this->validate([
@@ -29,9 +32,25 @@ class Chat extends Component
         $this->reset('body');
     }
 
+    public function loadMessages()
+    {
+        // get count
+        $count = Message::where('conversation_id', $this->conversation->id)->count();
+
+        // skip and query
+        $this->loadedMessages = Message::where('conversation_id', $this->conversation->id)
+            ->skip($count - $this->paginate_var)
+            ->take($this->paginate_var)
+            ->get();
+
+        return $this->loadedMessages;
+    }
+
     public function mount()
     {
         $this->receiver = $this->conversation->getReceiver();
+
+        $this->loadMessages();
     }
 
     public function render()
