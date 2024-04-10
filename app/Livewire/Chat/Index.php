@@ -13,7 +13,7 @@ class Index extends Component
 
                     <!-- chat list -->
                     <div class="relative w-full h-full md:w-[320px] xl:w-[400px] border-r shrink-0 overflow-y-auto dark:border-gray-600">
-
+                        <livewire:chat.chat-list />
                     </div>
 
                     <main class="hidden md:grid w-full h-full relative overflow-y-auto dark:border-gray-700" style="contain: content">
