@@ -29,6 +29,9 @@ class Chat extends Component
             'body' => $this->body
         ]);
 
+        // scroll to bottom
+        $this->dispatch('scroll-bottom');
+
         $this->reset('body');
 
         // push new message
