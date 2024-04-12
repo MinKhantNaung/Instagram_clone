@@ -2,13 +2,21 @@
     height: 0,
     conversationElement: document.getElementById('conversation'),
 }" x-init="height = conversationElement.scrollHeight;
-$nextTick(() => conversationElement.scrollTop = height);"
+$nextTick(() => conversationElement.scrollTop = height);
+Echo.private('users.{{ auth()->user()->id }}')
+    .notification((notification) => {
+
+        if (notification['type'] == 'App\\Notifications\\MessageSentNotification' && notification['conversation_id'] == {{ $conversation->id }}) {
+            $wire.listenBroadcastedMessage(notification);
+        }
+
+    });"
     @scroll-bottom.window="
  $nextTick(()=>
  conversationElement.scrollTop= conversationElement.scrollHeight
  );
  "
-    class="w-full overflow-hidden h-full">
+    {{-- you can search 'App\\Notifications\\MessageSendNotification' in pusher debug console --}} class="w-full overflow-hidden h-full">
 
     <div class="border-r flex flex-col overflow-y-scroll grow h-full">
         {{-- ---------- --}}

@@ -18,6 +18,20 @@ class Chat extends Component
     public $loadedMessages;
     public $paginate_var = 10;
 
+    public function listenBroadcastedMessage($event)
+    {
+        $this->dispatch('scroll-bottom');
+
+        $newMessage = Message::find($event['message_id']);
+
+        // push message
+        $this->loadedMessages->push($newMessage);
+
+        // mark as read
+        $newMessage->read_at = now();
+        $newMessage->save();
+    }
+
     public function sendMessage()
     {
         $this->validate([
