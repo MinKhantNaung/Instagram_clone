@@ -78,7 +78,21 @@ $nextTick(() => conversationElement.scrollTop = height);"
         {{-- ---------- --}}
         {{-- -Messages- --}}
         {{-- ---------- --}}
-        <main id="conversation"
+        <main
+            @scroll="scrollTop = $el.scrollTop;
+        console.log(scrollTop);
+        if (scrollTop <= 0) {
+            @this.dispatch('loadMore');
+        }"
+            @update-height.window="
+        $nextTick(() => {
+            newHeight = $el.scrollHeight;
+            oldHeight = height;
+            $el.scrollTop = newHeight - oldHeight;
+            height = newHeight;
+        })
+        "
+            id="conversation"
             class="flex flex-col gap-5 p-2.5 overflow-y-auto flex-grow overscroll-contain overflow-x-hidden w-full my-auto">
 
             <!--Message-->
