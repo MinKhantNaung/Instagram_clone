@@ -1,4 +1,11 @@
-<div class="flex flex-col transition-all h-full overflow-hidden">
+<div x-init="Echo.private('users.{{ auth()->user()->id }}')
+    .notification((notification) => {
+
+        if (notification['type'] == 'App\\Notifications\\MessageSentNotification') {
+            $wire.$refresh();
+        }
+
+    });" class="flex flex-col transition-all h-full overflow-hidden">
 
     <header class="px-3 z-10 bg-white sticky top-0 w-full py-2 sm:pt-12">
 
@@ -97,7 +104,8 @@
 
                             {{-- Read status --}}
                             {{-- Only show if AUTH is NOT onwer of message --}}
-                            <div class="{{ $lastMessage != null && $lastMessage->sender_id != auth()->id() && !$lastMessage->isRead() ? 'visible' : 'invisible' }} col-span-2 flex flex-col text-center my-auto">
+                            <div
+                                class="{{ $lastMessage != null && $lastMessage->sender_id != auth()->id() && !$lastMessage->isRead() ? 'visible' : 'invisible' }} col-span-2 flex flex-col text-center my-auto">
 
                                 {{-- Dots icon --}}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
