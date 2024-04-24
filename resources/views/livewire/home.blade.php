@@ -3,7 +3,7 @@
     canLoadMore: @entangle('canLoadMore')
 
 }"
-    @scroll.window.trottle="
+    @scroll.window.throttle="
 
     scrollTop = window.scrollY || window.scrollTop;
     divHeight = window.innerHeight || document.documentElement.clientHeight;
