@@ -1,4 +1,7 @@
-<div class="grid lg:grid-cols-12 gap-3 h-full w-full overflow-hidden">
+<div x-init="Echo.channel('comments')
+.listen('CommentEvent', e => {
+    $wire.$refresh();
+})" class="grid lg:grid-cols-12 gap-3 h-full w-full overflow-hidden">
 
     <aside class="hidden lg:flex lg:col-span-7 m-auto items-center w-full overflow-scroll">
 
@@ -26,7 +29,7 @@
     </aside>
 
 
-    <aside class="lg:col-span-5 h-full relative flex gap-4 flex-col overflow-hidden overflow-y-scroll scrollbar-hide">
+    <aside class="lg:col-span-5 h-full relative flex gap-4 flex-col overflow-hidden overflow-y-scroll scrollbar-hide" id="comments-container">
         <header class="flex items-center gap-3 border-b py-2 sticky top-0 bg-white z-10">
 
             <x-avatar story src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}" class="h-9 w-9" />

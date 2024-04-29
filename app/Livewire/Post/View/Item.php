@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Post\View;
 
+use App\Events\CommentEvent;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Notifications\NewCommentNotification;
@@ -57,6 +58,14 @@ class Item extends Component
             'commentable_type' => Post::class,
         ]);
 
+        // call comments event for live updating comment
+        CommentEvent::dispatch();
+
+        $this->js("
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.scrollTop = 0;
+            ");
+
         $this->reset('body', 'parent_id');
 
         // notify user
@@ -74,7 +83,7 @@ class Item extends Component
 
     public function render()
     {
-        $comments = $this->post->comments()->whereDoesntHave('parent')->get();
+        $comments = $this->post->comments()->whereDoesntHave('parent')->orderByDesc('id')->get();
 
         return view('livewire.post.view.item', compact('comments'));
     }
