@@ -1,5 +1,5 @@
 
-# Instagram Clone (Instructor (https://github.com/namumakwembo))
+# Instagram Clone (Instructor (https://github.com/namumakwembo) (I added comment live updating feature.))
 
 ## Description
 
